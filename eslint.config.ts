@@ -21,4 +21,6 @@ export default defineConfigWithVueTs(
   pluginVue.configs['flat/essential'],
   vueTsConfigs.recommended,
   skipFormatting,
+  // turn off Component name "index" should always be multi-word.
+  { rules: { 'vue/multi-word-component-names': 'off' } },
 )

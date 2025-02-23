@@ -8,6 +8,7 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    AuthenticatedLayout: typeof import('./src/components/layouts/AuthenticatedLayout.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElDatePicker: typeof import('element-plus/es')['ElDatePicker']
     ElForm: typeof import('element-plus/es')['ElForm']
@@ -18,8 +19,13 @@ declare module 'vue' {
     ElSelect: typeof import('element-plus/es')['ElSelect']
     IEpEdit: typeof import('~icons/ep/edit')['default']
     ILucideAlarmClockMinus: typeof import('~icons/lucide/alarm-clock-minus')['default']
+    ILucideChevronsUpDown: typeof import('~icons/lucide/chevrons-up-down')['default']
+    ILucideCommand: typeof import('~icons/lucide/command')['default']
     ILucideMoon: typeof import('~icons/lucide/moon')['default']
+    ILucideSearch: typeof import('~icons/lucide/search')['default']
+    Layouts: typeof import('./src/components/layouts/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Sidebar: typeof import('./src/components/layouts/Sidebar.vue')['default']
   }
 }
