@@ -1,0 +1,28 @@
+@import './base.css';
+/* @import 'element-plus/theme-chalk/dark/css-vars.css'; */
+body {
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    PingFang SC,
+    Hiragino Sans GB,
+    noto sans,
+    Microsoft YaHei,
+    Helvetica Neue,
+    Helvetica,
+    Arial,
+    sans-serif;
+}
+
+/* html.dark {
+  --el-color-primary: #a855f7;
+  --el-color-primary-light-1: #d8b4fe;
+  --el-color-primary-dark-1: #9333ea;
+} */
+
+body,
+html,
+#app {
+  height: 100vh;
+}
