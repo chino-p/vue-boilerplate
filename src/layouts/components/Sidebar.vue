@@ -1,6 +1,7 @@
 <template>
+  <!-- class="flex h-full w-full flex-col  overflow-y-auto border-r shadow border-slate-100 bg-stone-100 dark:bg-black" -->
   <aside
-    class="flex h-full w-full flex-col overflow-y-auto border-r border-slate-100 bg-stone-100 dark:bg-black"
+    class="flex h-full w-full flex-col  overflow-y-auto border-r shadow border-slate-100 bg-sidebar-bg dark:bg-black"
   >
     <SidebarHeader />
     <div class="flex-1">

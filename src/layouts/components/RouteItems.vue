@@ -1,15 +1,4 @@
 <template>
-  <!-- <div
-    :class="[
-      'm-2 flex items-center justify-start gap-2 rounded px-2 py-1.5 text-sm transition-[box-shadow,_background-color,_color]',
-      selected
-        ? 'bg-white text-stone-950 shadow'
-        : 'bg-transparent text-stone-500 shadow-none hover:bg-stone-200',
-    ]"
-  >
-    <iconify-icon :icon="icon" />
-    <span>{{ title }}</span>
-  </div> -->
   <RouterLink
     :to="path"
     active-class="bg-white text-stone-950 shadow"
