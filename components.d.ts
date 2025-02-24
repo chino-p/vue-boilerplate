@@ -21,6 +21,7 @@ declare module 'vue' {
     ILucideAlarmClockMinus: typeof import('~icons/lucide/alarm-clock-minus')['default']
     ILucideChevronsUpDown: typeof import('~icons/lucide/chevrons-up-down')['default']
     ILucideCommand: typeof import('~icons/lucide/command')['default']
+    ILucideHouse: typeof import('~icons/lucide/house')['default']
     ILucideMoon: typeof import('~icons/lucide/moon')['default']
     ILucideSearch: typeof import('~icons/lucide/search')['default']
     Layouts: typeof import('./src/components/layouts/index.vue')['default']

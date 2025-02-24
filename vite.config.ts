@@ -15,7 +15,13 @@ import zipPack from 'vite-plugin-zip-pack'
 
 export default defineConfig({
   plugins: [
-    vue(),
+    vue({
+      template: {
+        compilerOptions: {
+          isCustomElement: (element) => element.startsWith('iconify-icon'),
+        },
+      },
+    }),
     vueDevTools(),
     tailwindcss(),
     Components({
@@ -27,7 +33,8 @@ export default defineConfig({
       resolvers: [
         ElementPlusResolver({ importStyle: 'sass' }),
         IconsResolver({
-          enabledCollections: ['ep'],
+          componentPrefix: 'i',
+          enabledCollections: ['ep', 'lucide'],
         }),
       ],
       eslintrc: {

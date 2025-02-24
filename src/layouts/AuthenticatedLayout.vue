@@ -1,5 +1,5 @@
 <template>
-  <div class="grid grid-cols-[240px_1fr] h-full">
+  <div class="grid h-full grid-cols-[240px_1fr]">
     <Sidebar />
     <RouterView />
   </div>
