@@ -29,7 +29,13 @@ export default defineConfig({
       resolvers: [ElementPlusResolver({ importStyle: 'sass' }), IconsResolver()],
     }),
     AutoImport({
-      imports: ['vue', 'vue-router'],
+      imports: [
+        'vue',
+        'vue-router',
+        {
+          '@vueuse/core': ['useToggle'],
+        },
+      ],
       resolvers: [
         ElementPlusResolver({ importStyle: 'sass' }),
         IconsResolver({

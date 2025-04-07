@@ -1,6 +1,6 @@
 <template>
   <aside
-    class="bg-sidebar-bg flex h-full w-full flex-col overflow-y-auto border-r border-slate-100 shadow dark:bg-black"
+    class="bg-sidebar-bg relative z-10 flex h-full w-full flex-col overflow-y-auto border-r border-slate-100 shadow dark:bg-black"
   >
     <SidebarHeader v-if="!collapsed" />
     <div class="flex-1">
@@ -19,7 +19,6 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue'
 import routeItems from '../routeItems'
 import RouteItems from './RouteItems.vue'
 import SidebarHeader from './SidebarHeader.vue'

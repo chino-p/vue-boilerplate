@@ -3,7 +3,7 @@
     <!-- Toggle Sidebar Button -->
     <button
       @click="toggleSidebar"
-      class="mr-4 flex cursor-pointer items-center hover:bg-stone-200 focus:outline-none"
+      class="mr-4 flex cursor-pointer items-center rounded p-2 hover:bg-stone-200 focus:outline-none"
     >
       <i-lucide-panel-left />
     </button>
@@ -26,7 +26,6 @@
 </template>
 
 <script setup lang="ts">
-import { useToggle } from '@vueuse/core'
 import { isDark } from '@/theme/composables/dark'
 
 const toggleDark = useToggle(isDark)

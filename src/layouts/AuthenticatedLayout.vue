@@ -7,10 +7,10 @@
       transition: 'grid-template-columns 0.3s ease',
     }"
   >
-    <aside class="overflow-hidden">
+    <div class="relative overflow-visible">
       <Sidebar :collapsed="!showSidebar" />
-    </aside>
-    <main class="transition-all duration-300">
+    </div>
+    <main class="relative transition-all duration-300">
       <Breadcrumb @toggle-sidebar="toggleSidebar" />
       <RouterView />
     </main>
@@ -18,7 +18,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
 import Breadcrumb from './components/Breadcrumb.vue'
 import Sidebar from './components/Sidebar.vue'
 

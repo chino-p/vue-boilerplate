@@ -74,6 +74,9 @@
     "watch": true,
     "watchEffect": true,
     "watchPostEffect": true,
-    "watchSyncEffect": true
+    "watchSyncEffect": true,
+    "useMouse": true,
+    "useMyFetch": true,
+    "useToggle": true
   }
 }

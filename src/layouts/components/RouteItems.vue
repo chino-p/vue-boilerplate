@@ -3,7 +3,7 @@
     <div v-if="children.length">
       <div
         v-if="!collapsed"
-        @click="toggle"
+        @click="toggleNavChildren"
         class="m-2 flex cursor-pointer items-center justify-between rounded bg-transparent px-2 py-1.5 text-sm text-stone-500 transition hover:bg-stone-200"
       >
         <div class="flex items-center gap-2">
@@ -22,20 +22,25 @@
       >
         <iconify-icon v-if="icon" :icon="icon" />
       </div>
-      <!-- Submenu: when collapsed and hovering, show submenu items -->
+
+      <!-- Submenu: when collapsed and hovering, show submenu items  -->
       <div
         v-if="collapsed && isHover && children.length"
-        class="absolute top-0 left-full z-10 w-48 rounded border border-slate-200 bg-white shadow-md"
+        class="fixed top-auto left-[58px] z-9999 min-w-48 rounded border border-slate-200 bg-white p-1 shadow-lg dark:bg-gray-800"
+        :style="{ top: `${submenuTop}px` }"
       >
+        <div class="px-3 py-1 font-medium text-stone-700 dark:text-stone-300">{{ title }}</div>
+        <div class="my-1 border-t border-slate-200 dark:border-slate-600"></div>
         <RouterLink
           v-for="child in children"
           :key="child.title"
           :to="child.path"
-          class="block px-4 py-1.5 text-sm text-stone-500 hover:bg-stone-200"
+          class="block rounded px-3 py-1.5 text-sm text-stone-600 hover:bg-stone-100 dark:text-stone-400 dark:hover:bg-gray-700"
         >
           {{ child.title }}
         </RouterLink>
       </div>
+
       <!-- Expanded submenu for non-collapsed mode -->
       <div v-if="!collapsed" v-show="open" class="mx-4">
         <RouterLink
@@ -57,7 +62,6 @@
           'm-2',
           'flex',
           'items-center',
-          collapsed ? 'justify-center' : '',
           'gap-2',
           'rounded',
           'bg-transparent',
@@ -67,6 +71,7 @@
           'text-stone-500',
           'transition',
           'hover:bg-stone-200',
+          collapsed ? 'justify-center' : '',
         ]"
       >
         <iconify-icon v-if="icon" :icon="icon" />
@@ -79,9 +84,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { RouterLink } from 'vue-router'
-
 defineProps({
   selected: { type: Boolean, required: true },
   icon: { type: String, required: false },
@@ -95,17 +97,29 @@ defineProps({
 })
 
 const open = ref(false)
-const toggle = () => {
+const toggleNavChildren = () => {
   open.value = !open.value
 }
 
 const isHover = ref(false)
-const onMouseEnter = () => {
+const submenuTop = ref(0)
+
+const onMouseEnter = (event: MouseEvent) => {
   isHover.value = true
+  // Calculate the vertical position for the submenu
+  const element = event.currentTarget as HTMLElement
+  const rect = element.getBoundingClientRect()
+  submenuTop.value = rect.top
 }
+
 const onMouseLeave = () => {
   isHover.value = false
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+/* Ensure submenu appears above other elements */
+.z-1000 {
+  z-index: 1000;
+}
+</style>
