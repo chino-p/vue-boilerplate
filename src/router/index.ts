@@ -21,6 +21,11 @@ const router = createRouter({
       name: 'analytics',
       component: AnalyticView,
     },
+    {
+      path: '/login',
+      name: 'login',
+      component: () => import('@/views/LoginPage.vue'),
+    },
   ],
 })
 

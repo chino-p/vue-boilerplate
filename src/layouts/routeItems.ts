@@ -13,6 +13,14 @@ export default [
     ],
   },
   {
+    title: 'Dashboard',
+    icon: 'lucide-layout-panel-top',
+    children: [
+      { title: 'Analytics', path: '/dashboard/analytics' },
+      { title: 'Reports', path: '/dashboard/reports' },
+    ],
+  },
+  {
     title: 'Profile',
     icon: 'lucide-user',
     path: '/profile',

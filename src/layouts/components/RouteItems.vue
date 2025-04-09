@@ -26,16 +26,18 @@
       <!-- Submenu: when collapsed and hovering, show submenu items  -->
       <div
         v-if="collapsed && isHover && children.length"
-        class="fixed top-auto left-[58px] z-9999 min-w-48 rounded border border-slate-200 bg-white p-1 shadow-lg dark:bg-gray-800"
+        class="fixed top-auto left-[58px] z-9999 min-w-48 rounded-xl border border-slate-200 bg-white p-1 shadow-lg dark:bg-gray-800"
         :style="{ top: `${submenuTop}px` }"
       >
-        <div class="px-3 py-1 font-medium text-stone-700 dark:text-stone-300">{{ title }}</div>
+        <div class="px-3 py-1 text-center text-sm font-medium text-stone-700 dark:text-stone-300">
+          {{ title }}
+        </div>
         <div class="my-1 border-t border-slate-200 dark:border-slate-600"></div>
         <RouterLink
           v-for="child in children"
           :key="child.title"
           :to="child.path"
-          class="block rounded px-3 py-1.5 text-sm text-stone-600 hover:bg-stone-100 dark:text-stone-400 dark:hover:bg-gray-700"
+          class="block rounded px-3 py-1.5 text-center text-sm text-stone-600 hover:bg-stone-100 dark:text-stone-400 dark:hover:bg-gray-700"
         >
           {{ child.title }}
         </RouterLink>
