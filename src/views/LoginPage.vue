@@ -106,6 +106,24 @@ import axios, { AxiosError } from 'axios'
 import { useRouter } from 'vue-router'
 import Cookies from 'universal-cookie'
 
+import {
+  generateAesKey,
+  encryptBase64,
+  decryptBase64,
+  encryptWithAes,
+  decryptWithAes,
+} from '@/utils/crypto'
+import CryptoJS from 'crypto-js'
+
+const aesKey = CryptoJS.enc.Utf8.parse('asd')
+const a = generateAesKey()
+const b = encryptBase64(CryptoJS.enc.Utf8.parse('123'))
+const c = decryptBase64(b)
+const d = encryptWithAes('123', aesKey)
+const e = decryptWithAes(d, aesKey)
+
+console.log('a', a, 'b', b, 'c', c, 'd', d, 'e', e)
+
 const router = useRouter()
 const cookies = new Cookies()
 
