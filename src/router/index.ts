@@ -33,7 +33,6 @@ router.beforeEach((to, from, next) => {
   const cookies = useCookies()
   const token = cookies.get('token')
   console.log('token', token)
-  // 如果访问需要登录的页面（除了 /login）且没有 token，则跳转登录
   if (to.path !== '/login' && !token) {
     next({ path: '/login' })
   } else {
