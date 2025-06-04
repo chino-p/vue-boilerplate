@@ -26,7 +26,7 @@
       <!-- Submenu: when collapsed and hovering, show submenu items  -->
       <div
         v-if="collapsed && isHover && children.length"
-        class="fixed top-auto left-[58px] z-9999 min-w-48 rounded-xl border border-slate-200 bg-white p-1 shadow-lg dark:bg-gray-800"
+        class="fixed top-auto left-[58px] z-20 min-w-48 rounded-xl border border-slate-200 bg-white p-1 shadow-lg dark:bg-gray-800"
         :style="{ top: `${submenuTop}px` }"
       >
         <div class="px-3 py-1 text-center text-sm font-medium text-stone-700 dark:text-stone-300">
@@ -119,9 +119,4 @@ const onMouseLeave = () => {
 }
 </script>
 
-<style scoped>
-/* Ensure submenu appears above other elements */
-.z-1000 {
-  z-index: 1000;
-}
-</style>
+<style scoped></style>

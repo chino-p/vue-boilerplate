@@ -22,5 +22,7 @@ export default defineConfigWithVueTs(
   vueTsConfigs.recommended,
   skipFormatting,
   // turn off Component name "index" should always be multi-word.
-  { rules: { 'vue/multi-word-component-names': 'off' } },
+  {
+    rules: { 'vue/multi-word-component-names': 'off', '@typescript-eslint/no-explicit-any': 'off' },
+  },
 )

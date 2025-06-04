@@ -13,6 +13,8 @@
     "MaybeRefOrGetter": true,
     "PropType": true,
     "Ref": true,
+    "Slot": true,
+    "Slots": true,
     "VNode": true,
     "WritableComputedRef": true,
     "computed": true,
@@ -71,12 +73,10 @@
     "useRouter": true,
     "useSlots": true,
     "useTemplateRef": true,
+    "useToggle": true,
     "watch": true,
     "watchEffect": true,
     "watchPostEffect": true,
-    "watchSyncEffect": true,
-    "useMouse": true,
-    "useMyFetch": true,
-    "useToggle": true
+    "watchSyncEffect": true
   }
 }

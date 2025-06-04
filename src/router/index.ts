@@ -31,8 +31,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const cookies = useCookies()
-  const token = cookies.get('token')
-  console.log('token', token)
+  const token = cookies.get('Authorization')
   if (to.path !== '/login' && !token) {
     next({ path: '/login' })
   } else {
