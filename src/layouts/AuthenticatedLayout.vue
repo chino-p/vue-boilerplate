@@ -16,10 +16,13 @@
       <div
         v-if="showDropdown"
         ref="dropdownRef"
-        class="absolute top-0 right-full mr-2 w-48 rounded bg-white p-2 shadow-md"
+        @click.stop
+        class="absolute top-1 left-1 w-48 rounded border-1 border-slate-200 bg-white shadow-md"
       >
         <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit</a>
-        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
+        <a @click="handleLogout" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+          >Logout</a
+        >
       </div>
     </main>
   </div>
@@ -30,6 +33,8 @@ import { ref, onMounted, onBeforeUnmount } from 'vue'
 import Breadcrumb from './components/Breadcrumb.vue'
 import Sidebar from './components/Sidebar.vue'
 import { showDropdown } from '@/composables/useDropdown'
+import { useRouter } from 'vue-router'
+import { useUserStore } from '@/stores/user'
 
 // Reference to dropdown container
 const dropdownRef = ref<HTMLElement | null>(null)
@@ -47,6 +52,14 @@ onBeforeUnmount(() => window.removeEventListener('click', onClickOutside))
 const showSidebar = ref(true)
 const toggleSidebar = () => {
   showSidebar.value = !showSidebar.value
+}
+
+// Setup logout handler
+const router = useRouter()
+const userStore = useUserStore()
+function handleLogout() {
+  showDropdown.value = false
+  return userStore.logout().then(() => router.replace({ path: '/login' }))
 }
 </script>
 
