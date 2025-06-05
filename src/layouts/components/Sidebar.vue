@@ -22,7 +22,6 @@
 import routeItems from '../routeItems'
 import RouteItems from './RouteItems.vue'
 import SidebarHeader from './SidebarHeader.vue'
-import { useRoute } from 'vue-router'
 
 // Determine if sidebar item is selected by comparing current route
 const route = useRoute()
