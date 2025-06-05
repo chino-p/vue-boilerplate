@@ -18,11 +18,12 @@ export const globalHeaders = () => {
 }
 
 axios.defaults.headers['Content-Type'] = 'application/json;charset=utf-8'
+axios.defaults.headers['1231'] = '123'
 // 创建 axios 实例
 const service = axios.create({
   baseURL: import.meta.env.VITE_APP_BASE_API,
   timeout: 500000,
-  withCredentials: true,
+  // withCredentials: true,
 })
 
 // 请求拦截器
