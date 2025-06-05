@@ -4,7 +4,10 @@
       <div
         v-if="!collapsed"
         @click="toggleNavChildren"
-        class="m-2 flex cursor-pointer items-center justify-between rounded bg-transparent px-2 py-1.5 text-sm text-stone-500 transition hover:bg-stone-200"
+        :class="[
+          'm-2 flex cursor-pointer items-center justify-between rounded px-2 py-1.5 text-sm transition',
+          selected ? 'bg-stone-200 text-stone-950' : 'text-stone-500 hover:bg-stone-200',
+        ]"
       >
         <div class="flex items-center gap-2">
           <iconify-icon v-if="icon" :icon="icon" />
@@ -58,22 +61,11 @@
     </div>
     <div v-else>
       <RouterLink
-        :to="path as string"
-        active-class="bg-stone-200! text-stone-950"
+        :to="props.path as string"
         :class="[
-          'm-2',
-          'flex',
-          'items-center',
-          'gap-2',
-          'rounded',
-          'bg-transparent',
-          'px-2',
-          'py-1.5',
-          'text-sm',
-          'text-stone-500',
-          'transition',
-          'hover:bg-stone-200',
-          collapsed ? 'justify-center' : '',
+          'm-2 flex items-center gap-2 rounded px-2 py-1.5 text-sm transition',
+          leafActive ? '!bg-stone-200 !text-stone-950' : 'text-stone-500 hover:bg-stone-200',
+          props.collapsed ? 'justify-center' : '',
         ]"
       >
         <iconify-icon v-if="icon" :icon="icon" />
@@ -86,7 +78,7 @@
 </template>
 
 <script setup lang="ts">
-defineProps({
+const props = defineProps({
   selected: { type: Boolean, required: true },
   icon: { type: String, required: false },
   title: { type: String, required: true },
@@ -98,10 +90,28 @@ defineProps({
   collapsed: { type: Boolean, default: false },
 })
 
-const open = ref(false)
+// Detect active states based on current route
+const route = useRoute()
+const leafActive = computed(() => props.path === route.path)
+
+// Submenu auto-open when any child matches route
+const hasActiveChild = computed(() =>
+  (props.children || []).some((child) => child.path === route.path),
+)
+
+// Initialize open state
+const open = ref(hasActiveChild.value)
+// Toggle submenu manually
 const toggleNavChildren = () => {
   open.value = !open.value
 }
+// Keep submenu open when route changes
+watch(
+  () => route.path,
+  () => {
+    if (hasActiveChild.value) open.value = true
+  },
+)
 
 const isHover = ref(false)
 const submenuTop = ref(0)

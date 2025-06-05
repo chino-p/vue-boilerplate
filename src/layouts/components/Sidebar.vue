@@ -7,7 +7,7 @@
       <RouteItems
         v-for="item in routeItems"
         :key="item.title"
-        :selected="item.title === 'Home'"
+        :selected="isSelected(item)"
         :icon="item.icon"
         :title="item.title"
         :path="item.path"
@@ -22,6 +22,12 @@
 import routeItems from '../routeItems'
 import RouteItems from './RouteItems.vue'
 import SidebarHeader from './SidebarHeader.vue'
+import { useRoute } from 'vue-router'
+
+// Determine if sidebar item is selected by comparing current route
+const route = useRoute()
+// Selected only when the item's own path matches the route
+const isSelected = (item: { path?: string }) => item.path === route.path
 
 defineProps({
   collapsed: { type: Boolean, default: false },

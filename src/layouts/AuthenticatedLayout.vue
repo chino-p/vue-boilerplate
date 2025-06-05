@@ -24,17 +24,18 @@
           >Logout</a
         >
       </div>
+      <el-button @click="() => removeToken()">清除cookie</el-button>
     </main>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import type { ElMessageBoxOptions } from 'element-plus'
 import Breadcrumb from './components/Breadcrumb.vue'
 import Sidebar from './components/Sidebar.vue'
 import { showDropdown } from '@/composables/useDropdown'
-import { useRouter } from 'vue-router'
 import { useUserStore } from '@/stores/user'
+import { removeToken } from '@/utils/auth'
 
 // Reference to dropdown container
 const dropdownRef = ref<HTMLElement | null>(null)
@@ -57,9 +58,22 @@ const toggleSidebar = () => {
 // Setup logout handler
 const router = useRouter()
 const userStore = useUserStore()
-function handleLogout() {
+const handleLogout = async () => {
   showDropdown.value = false
-  return userStore.logout().then(() => router.replace({ path: '/login' }))
+  await ElMessageBox.confirm('确定注销并退出系统吗？', '提示', {
+    confirmButtonText: '确定',
+    cancelButtonText: '取消',
+    type: 'warning',
+  } as ElMessageBoxOptions)
+
+  await userStore.logout()
+  // 跳转到登录页面，并且保存之前访问的路径，方便登录之后可以继续返回到界面
+  router.replace({
+    path: '/login',
+    query: {
+      redirect: encodeURIComponent(router.currentRoute.value.fullPath || '/'),
+    },
+  })
 }
 </script>
 

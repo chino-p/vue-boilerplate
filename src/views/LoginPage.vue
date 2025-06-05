@@ -105,6 +105,7 @@
 <script setup lang="ts">
 import { login } from '@/api/login'
 import type { LoginForm } from '@/types/common'
+import { setToken } from '@/utils/auth'
 
 const router = useRouter()
 
@@ -115,9 +116,23 @@ const form = ref<LoginForm>({
 })
 const showPassword = ref(false)
 
+const redirect = ref('/')
+watch(
+  () => router.currentRoute.value,
+  (newRoute: any) => {
+    redirect.value =
+      newRoute.query && newRoute.query.redirect && decodeURIComponent(newRoute.query.redirect)
+  },
+  { immediate: true },
+)
+
+// 登录方法
 const onSubmit = async () => {
-  await login(form.value)
-  router.push('/')
+  // TODO loading
+  const res = await login(form.value)
+  setToken(res.data)
+  const redirectUrl = redirect.value || '/'
+  await router.push(redirectUrl)
 }
 </script>
 
