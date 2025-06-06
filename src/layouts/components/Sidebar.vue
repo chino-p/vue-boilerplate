@@ -19,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-import routeItems from '../routeItems'
+import routeItems from '../../router/routes'
 import RouteItems from './RouteItems.vue'
 import SidebarHeader from './SidebarHeader.vue'
 

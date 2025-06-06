@@ -19,11 +19,10 @@ export const globalHeaders = () => {
 
 axios.defaults.headers['Content-Type'] = 'application/json;charset=utf-8'
 axios.defaults.headers['1231'] = '123'
-// 创建 axios 实例
+// 创建 axios 实例，TODO timeout需要调整
 const service = axios.create({
   baseURL: import.meta.env.VITE_APP_BASE_API,
   timeout: 500000,
-  // withCredentials: true,
 })
 
 // 请求拦截器
@@ -63,26 +62,29 @@ service.interceptors.response.use(
       return res.data
     }
     if (code === 401) {
-      // prettier-ignore
       if (!isRelogin.show) {
-        isRelogin.show = true;
+        isRelogin.show = true
         ElMessageBox.confirm('登录状态已过期，您可以继续留在该页面，或者重新登录', '系统提示', {
           confirmButtonText: '重新登录',
           cancelButtonText: '取消',
-          type: 'warning'
-        }).then(() => {
-          isRelogin.show = false;
-          useUserStore().logout().then(() => {
-            router.replace({
-              path: '/login',
-              query: {
-                redirect: encodeURIComponent(router.currentRoute.value.fullPath || '/')
-              }
-            })
-          });
-        }).catch(() => {
-          isRelogin.show = false;
-        });
+          type: 'warning',
+        })
+          .then(() => {
+            isRelogin.show = false
+            useUserStore()
+              .logout()
+              .then(() => {
+                router.replace({
+                  path: '/login',
+                  query: {
+                    redirect: encodeURIComponent(router.currentRoute.value.fullPath || '/'),
+                  },
+                })
+              })
+          })
+          .catch(() => {
+            isRelogin.show = false
+          })
       }
       return Promise.reject('无效的会话，或者会话已过期，请重新登录。')
     } else if (code === HttpStatus.SERVER_ERROR) {
@@ -111,38 +113,38 @@ service.interceptors.response.use(
     return Promise.reject(error)
   },
 )
-// 通用下载方法
-export function download(url: string, params: any, fileName: string) {
+// 通用下载方法, TODO 待验证
+export async function download(url: string, params: any, fileName: string) {
   downloadLoadingInstance = ElLoading.service({
     text: '正在下载数据，请稍候',
     background: 'rgba(0, 0, 0, 0.7)',
   })
-  // prettier-ignore
-  return service.post(url, params, {
+  try {
+    const resp = await service.post(url, params, {
       transformRequest: [
-        (params: any) => {
-          return transParams(params);
-        }
+        (params_1: any) => {
+          return transParams(params_1)
+        },
       ],
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      responseType: 'blob'
-    }).then(async (resp: any) => {
-      const isLogin = blobValidate(resp);
-      if (isLogin) {
-        const blob = new Blob([resp]);
-        FileSaver.saveAs(blob, fileName);
-      } else {
-        const resText = await resp.data.text();
-        const rspObj = JSON.parse(resText);
-        const errMsg = errorCode[rspObj.code] || rspObj.msg || errorCode['default'];
-        ElMessage.error(errMsg);
-      }
-      downloadLoadingInstance.close();
-    }).catch((r: any) => {
-      console.error(r);
-      ElMessage.error('下载文件出现错误，请联系管理员！');
-      downloadLoadingInstance.close();
-    });
+      responseType: 'blob',
+    })
+    const isLogin = blobValidate(resp)
+    if (isLogin) {
+      const blob = new Blob([resp.data])
+      FileSaver.saveAs(blob, fileName)
+    } else {
+      const resText = await resp.data.text()
+      const rspObj = JSON.parse(resText)
+      const errMsg = errorCode[rspObj.code] || rspObj.msg || errorCode['default']
+      ElMessage.error(errMsg)
+    }
+    downloadLoadingInstance.close()
+  } catch (r) {
+    console.error(r)
+    ElMessage.error('下载文件出现错误，请联系管理员！')
+    downloadLoadingInstance.close()
+  }
 }
 // 导出 axios 实例
 export default service

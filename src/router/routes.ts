@@ -5,7 +5,7 @@ export default [
     path: '/',
   },
   {
-    title: 'Dashboard',
+    title: '系统管理',
     icon: 'lucide-layout-panel-top',
     children: [
       { title: 'Analytics', path: '/dashboard/analytics' },
