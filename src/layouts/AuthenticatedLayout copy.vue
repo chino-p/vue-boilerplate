@@ -1,30 +1,32 @@
 <template>
-  <el-container>
-    <el-aside :width="showSidebar ? '240px' : '60px'">
+  <div
+    class="h-full"
+    :style="{
+      display: 'grid',
+      gridTemplateColumns: showSidebar ? '240px 1fr' : '60px 1fr',
+      transition: 'grid-template-columns 0.3s ease',
+    }"
+  >
+    <div class="relative overflow-visible">
       <Sidebar :collapsed="!showSidebar" />
-    </el-aside>
-
-    <el-container>
-      <el-header>
-        <Breadcrumb @toggle-sidebar="toggleSidebar" />
-      </el-header>
-      <el-main class="relative transition-all duration-300">
-        <RouterView />
-        <div
-          v-if="showDropdown"
-          ref="dropdownRef"
-          @click.stop
-          class="absolute top-1 left-1 w-48 rounded border-1 border-slate-200 bg-white shadow-md"
+    </div>
+    <main class="relative transition-all duration-300">
+      <Breadcrumb @toggle-sidebar="toggleSidebar" />
+      <RouterView />
+      <div
+        v-if="showDropdown"
+        ref="dropdownRef"
+        @click.stop
+        class="absolute top-1 left-1 w-48 rounded border-1 border-slate-200 bg-white shadow-md"
+      >
+        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit</a>
+        <a @click="handleLogout" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+          >Logout</a
         >
-          <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit</a>
-          <a @click="handleLogout" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-            >Logout</a
-          >
-        </div>
-        <el-button @click="() => removeToken()">清除cookie</el-button>
-      </el-main>
-    </el-container>
-  </el-container>
+      </div>
+      <el-button @click="() => removeToken()">清除cookie</el-button>
+    </main>
+  </div>
 </template>
 
 <script setup lang="ts">

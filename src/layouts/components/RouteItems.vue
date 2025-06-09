@@ -1,6 +1,6 @@
 <template>
   <div @mouseenter="onMouseEnter" @mouseleave="onMouseLeave" class="relative">
-    <div v-if="children.length">
+    <div v-if="children.length && title">
       <div
         v-if="!collapsed"
         @click="toggleNavChildren"
@@ -11,7 +11,7 @@
       >
         <div class="flex items-center gap-2">
           <iconify-icon v-if="icon" :icon="icon" />
-          <span>{{ title }}</span>
+          <span>{{ title }}123</span>
         </div>
         <div>
           <i-lucide-chevron-down v-if="open" />
@@ -28,7 +28,7 @@
 
       <!-- Submenu: when collapsed and hovering, show submenu items  -->
       <div
-        v-if="collapsed && isHover && children.length"
+        v-if="collapsed && isHover && children.length && title"
         class="fixed top-auto left-[58px] z-20 min-w-48 rounded-xl border border-slate-200 bg-white p-1 shadow-lg dark:bg-gray-800"
         :style="{ top: `${submenuTop}px` }"
       >
@@ -61,7 +61,7 @@
     </div>
     <div v-else>
       <RouterLink
-        :to="props.path as string"
+        :to="children[0].path"
         :class="[
           'm-2 flex items-center gap-2 rounded px-2 py-1.5 text-sm transition',
           leafActive ? '!bg-stone-200 !text-stone-950' : 'text-stone-500 hover:bg-stone-200',
@@ -70,7 +70,7 @@
       >
         <iconify-icon v-if="icon" :icon="icon" />
         <template v-if="!collapsed">
-          <span>{{ title }}</span>
+          <span>{{ children[0].title }}</span>
         </template>
       </RouterLink>
     </div>
@@ -78,13 +78,19 @@
 </template>
 
 <script setup lang="ts">
+import type { RouteMeta } from 'vue-router'
+
 const props = defineProps({
   selected: { type: Boolean, required: true },
   icon: { type: String, required: false },
-  title: { type: String, required: true },
+  title: { type: String, required: false },
   path: { type: String, required: false },
   children: {
-    type: Array as () => { title: string; path: string }[],
+    type: Array as () => {
+      title: string
+      path: string
+      meta: RouteMeta
+    }[],
     default: () => [],
   },
   collapsed: { type: Boolean, default: false },
