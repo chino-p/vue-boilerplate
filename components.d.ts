@@ -8,9 +8,9 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    AuthenticatedLayout: typeof import('./src/components/layouts/AuthenticatedLayout.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElButton: typeof import('element-plus/es')['ElButton']
+    ElCard: typeof import('element-plus/es')['ElCard']
     ElContainer: typeof import('element-plus/es')['ElContainer']
     ElDatePicker: typeof import('element-plus/es')['ElDatePicker']
     ElForm: typeof import('element-plus/es')['ElForm']
@@ -21,22 +21,19 @@ declare module 'vue' {
     ElMain: typeof import('element-plus/es')['ElMain']
     ElOption: typeof import('element-plus/es')['ElOption']
     ElSelect: typeof import('element-plus/es')['ElSelect']
+    ElTree: typeof import('element-plus/es')['ElTree']
     IEpEdit: typeof import('~icons/ep/edit')['default']
     ILucideAlarmClockMinus: typeof import('~icons/lucide/alarm-clock-minus')['default']
+    ILucideArrowLeft2: typeof import('~icons/lucide/arrow-left2')['default']
     ILucideChevronDown: typeof import('~icons/lucide/chevron-down')['default']
     ILucideChevronRight: typeof import('~icons/lucide/chevron-right')['default']
-    ILucideChevronsDown: typeof import('~icons/lucide/chevrons-down')['default']
-    ILucideChevronsRight: typeof import('~icons/lucide/chevrons-right')['default']
     ILucideChevronsUpDown: typeof import('~icons/lucide/chevrons-up-down')['default']
-    ILucideCommand: typeof import('~icons/lucide/command')['default']
-    ILucideHouse: typeof import('~icons/lucide/house')['default']
+    ILucideHome: typeof import('~icons/lucide/home')['default']
     ILucideMoon: typeof import('~icons/lucide/moon')['default']
     ILucidePanelLeft: typeof import('~icons/lucide/panel-left')['default']
-    ILucideSearch: typeof import('~icons/lucide/search')['default']
     ILucideSun: typeof import('~icons/lucide/sun')['default']
-    Layouts: typeof import('./src/components/layouts/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    Sidebar: typeof import('./src/components/layouts/Sidebar.vue')['default']
+    SeperatorLine: typeof import('./src/components/SeperatorLine.vue')['default']
   }
 }

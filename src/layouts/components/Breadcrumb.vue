@@ -1,5 +1,5 @@
 <template>
-  <nav class="flex items-center border-b border-slate-200 px-4 py-2 dark:border-gray-700">
+  <nav class="flex h-full items-center border-slate-200 dark:border-gray-700">
     <!-- Toggle Sidebar Button -->
     <button
       @click="toggleSidebar"

@@ -28,20 +28,26 @@ export const routes: RouteRecordRaw[] = [
         name: 'User',
         path: '/dashboard/analytics',
         component: () => import('@/views/contact/UserPage.vue'),
-        meta: { title: '成员管理', icon: 'lucide-house' },
+        meta: { title: '用户管理', icon: 'lucide-house' },
       },
       {
-        name: 'Reports',
+        name: 'Department',
         path: '/dashboard/reports',
         component: () => import('@/views/contact/DepartmentPage.vue'),
         meta: { title: '部门管理', icon: 'lucide-house' },
+      },
+      {
+        name: 'Role',
+        path: '/dashboard/reports',
+        component: () => import('@/views/contact/RolePage.vue'),
+        meta: { title: '角色管理', icon: 'lucide-house' },
       },
     ],
     meta: { title: '通讯录', icon: 'lucide-layout-panel-top' },
   },
   {
     name: 'Profile',
-    path: '/profile',
+    path: '/',
     component: () => import('@/layouts/AuthenticatedLayout.vue'),
     children: [
       {
@@ -50,6 +56,12 @@ export const routes: RouteRecordRaw[] = [
         meta: { title: '个人页面', icon: 'lucide-user' },
       },
     ],
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'NotFound',
+    component: () => import('@/views/404.vue'),
+    meta: { title: '404', show: false },
   },
   // {
   //   name: 'Settings',

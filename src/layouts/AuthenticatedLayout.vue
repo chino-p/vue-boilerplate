@@ -1,14 +1,14 @@
 <template>
-  <el-container>
+  <el-container class="h-full">
     <el-aside :width="showSidebar ? '240px' : '60px'">
       <Sidebar :collapsed="!showSidebar" />
     </el-aside>
 
     <el-container>
-      <el-header>
+      <el-header class="border-b border-slate-200 bg-white dark:bg-gray-800" height="40px">
         <Breadcrumb @toggle-sidebar="toggleSidebar" />
       </el-header>
-      <el-main class="relative transition-all duration-300">
+      <el-main class="bg-main-bg relative !p-2 transition-all duration-300">
         <RouterView />
         <div
           v-if="showDropdown"
@@ -21,7 +21,6 @@
             >Logout</a
           >
         </div>
-        <el-button @click="() => removeToken()">清除cookie</el-button>
       </el-main>
     </el-container>
   </el-container>

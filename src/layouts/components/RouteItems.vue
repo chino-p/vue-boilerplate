@@ -11,7 +11,7 @@
       >
         <div class="flex items-center gap-2">
           <iconify-icon v-if="icon" :icon="icon" />
-          <span>{{ title }}123</span>
+          <span>{{ title }}</span>
         </div>
         <div>
           <i-lucide-chevron-down v-if="open" />
@@ -61,6 +61,7 @@
     </div>
     <div v-else>
       <RouterLink
+        :exact-active-class="'bg-stone-200 text-stone-950'"
         :to="children[0].path"
         :class="[
           'm-2 flex items-center gap-2 rounded px-2 py-1.5 text-sm transition',
@@ -68,7 +69,7 @@
           props.collapsed ? 'justify-center' : '',
         ]"
       >
-        <iconify-icon v-if="icon" :icon="icon" />
+        <iconify-icon v-if="children[0].meta.icon" :icon="children[0].meta.icon" />
         <template v-if="!collapsed">
           <span>{{ children[0].title }}</span>
         </template>
