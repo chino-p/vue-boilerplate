@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-[8px] my-[2px] h-[20px] w-[1px] bg-[#dcdfe6]"></div>
+  <div>供应商管理</div>
 </template>
 
 <script setup lang="ts"></script>

@@ -6,22 +6,16 @@
   >
     <template #header>标题</template>
     <div class="flex h-full">
-      <div class="w-[80%]">123</div>
+      <UserLeftPanel :data="data" />
+      <UserRightPanel />
     </div>
   </el-card>
 </template>
 
 <script setup lang="ts">
-import { Menu, Search } from '@element-plus/icons-vue'
-import SeperatorLine from '@/components/SeperatorLine.vue'
+import UserLeftPanel from '../components/UserLeftPanel.vue'
+import UserRightPanel from '../components/UserRightPanel.vue'
 
-const handleNodeClick = (data: Tree) => {
-  console.log(data)
-}
-const defaultProps = {
-  children: 'children',
-  label: 'label',
-}
 const data = [
   {
     label: 'Level one 1',

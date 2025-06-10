@@ -26,21 +26,27 @@ export const routes: RouteRecordRaw[] = [
     children: [
       {
         name: 'User',
-        path: '/dashboard/analytics',
+        path: '/contacts/user',
         component: () => import('@/views/contact/UserPage.vue'),
         meta: { title: '用户管理', icon: 'lucide-house' },
       },
       {
         name: 'Department',
-        path: '/dashboard/reports',
+        path: '/contacts/department',
         component: () => import('@/views/contact/DepartmentPage.vue'),
         meta: { title: '部门管理', icon: 'lucide-house' },
       },
       {
         name: 'Role',
-        path: '/dashboard/reports',
+        path: '/contacts/role',
         component: () => import('@/views/contact/RolePage.vue'),
         meta: { title: '角色管理', icon: 'lucide-house' },
+      },
+      {
+        name: 'Supplier',
+        path: '/contacts/supplier',
+        component: () => import('@/views/contact/SupplierPage.vue'),
+        meta: { title: '供应商管理' },
       },
     ],
     meta: { title: '通讯录', icon: 'lucide-layout-panel-top' },

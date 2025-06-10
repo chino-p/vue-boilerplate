@@ -48,3 +48,19 @@ html,
 &::-webkit-scrollbar-thumb {
   background-color: #737373;
 }
+
+.el-drawer__header {
+  /* 假设你原来有 margin-bottom: 20px */
+  margin-bottom: 20px;
+  position: relative; /* 伪元素基于这个定位 */
+}
+
+.el-drawer__header::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  /* 垂直位置正好在 margin 底部 */
+  bottom: -20px; /* 与 margin-bottom 保持一致 */
+  border-bottom: 1px solid #dcdfe6;
+}

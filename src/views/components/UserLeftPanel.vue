@@ -15,6 +15,28 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { Menu, Search } from '@element-plus/icons-vue'
+import SeperatorLine from '@/components/SeperatorLine.vue'
+
+defineProps({
+  data: {
+    type: Array,
+    default: () => [],
+  },
+  defaultProps: {
+    type: Object,
+    default: () => ({
+      children: 'children',
+      label: 'label',
+    }),
+    required: false,
+  },
+})
+
+const handleNodeClick = (data: any) => {
+  console.log(data)
+}
+</script>
 
 <style scoped></style>
